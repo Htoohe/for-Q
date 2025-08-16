@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Awesome Video QR Code</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-styling@1.5.0/lib/qrcode-styling.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f0f0f0; }
+    #qr-code { margin: 20px auto; width: 300px; height: 300px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin-top: 20px; border: none; background-color: #4CAF50; color: white; border-radius: 5px; }
+    button:hover { background-color: #45a049; }
+  </style>
+</head>
+<body>
+  <h1>Awesome Video QR Code</h1>
+  <p>Scan to watch the video</p>
+  
+  <!-- QR code container -->
+  <div id="qr-code"></div>
+  
+  <!-- Download button -->
+  <button id="download-btn">Download QR Code as PNG</button>
+
+  <script>
+    // Gradient color setup
+    const gradient = [
+      { offset: "0%", color: "#ff512f" },  // red-orange start
+      { offset: "100%", color: "#dd2476" } // pink-magenta end
+    ];
+
+    // Create QR code with gradient and custom dot shapes
+    const qrCode = new QRCodeStyling({
+      width: 300,
+      height: 300,
+      data: "https://htoohe.github.io/My-site/Fun.mp4", // သင့် video URL
+      image: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png", // Center icon
+      dotsOptions: {
+        color: "#000000", // fallback color
+        gradient: gradient,
+        type: "rounded" // dot shape
+      },
+      cornersSquareOptions: {
+        type: "extra-rounded",
+        gradient: gradient
+      },
+      backgroundOptions: {
+        color: "#ffffff"
+      },
+      imageOptions: {
+        crossOrigin: "anonymous",
+        margin: 5
+      }
+    });
+
+    // Render QR code
+    qrCode.append(document.getElementById("qr-code"));
+
+    // Download functionality
+    document.getElementById("download-btn").addEventListener("click", () => {
+      qrCode.download({ name: "awesome-video-qr", extension: "png" });
+    });
+  </script>
+</body>
+</html>
